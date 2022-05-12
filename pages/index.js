@@ -7,6 +7,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Heading textAlign={"center"} mt = {10}>Taxes Baby</Heading>
+
     </div>
   )
 }
