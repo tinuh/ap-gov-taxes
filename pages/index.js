@@ -6,8 +6,7 @@ import { Heading } from '@chakra-ui/react'
 export default function Home() {
   return (
     <div className={styles.container}>
-      <Heading textAlign={"center"} mt = {10}>Taxes Baby</Heading>
-
+      <Heading bgClip = "text" bgGradient = "linear(to-tr, white, #53c9be)" textAlign={"center"} mt = {10}>Taxes Baby</Heading>
     </div>
   )
 }
