@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "export": "next export",
     "start": "next start",
     "lint": "next lint"
   },
@@ -12,9 +13,11 @@
     "@chakra-ui/react": "^1.8.8",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
+    "chart.js": "^3.7.1",
     "framer-motion": "^6.3.3",
     "next": "12.1.6",
     "react": "18.1.0",
+    "react-chartjs-2": "^4.1.0",
     "react-dom": "18.1.0",
     "react-hook-form": "^7.31.1",
     "use-places-autocomplete": "^3.0.0"
