@@ -1,7 +1,7 @@
-import { Heading, InputGroup, InputLeftElement, NumberInput, NumberInputField, Button, Box, FormErrorMessage, FormControl, FormLabel, Input, InputLeftAddon, Flex} from '@chakra-ui/react'
 import React, {useState} from 'react';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
+import { Heading, InputGroup, InputLeftElement, NumberInput, NumberInputField, Button, Box, FormErrorMessage, FormControl, FormLabel, Input, InputLeftAddon, Flex} from '@chakra-ui/react'
 import { Bar, Pie } from "react-chartjs-2";
 import 'chart.js/auto';
 
