@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
 import { Heading, InputGroup, InputLeftElement, NumberInput, NumberInputField, Button, Box, FormErrorMessage, FormControl, FormLabel, Input, InputLeftAddon, Flex} from '@chakra-ui/react'
@@ -6,15 +6,82 @@ import { Bar, Pie } from "react-chartjs-2";
 import 'chart.js/auto';
 
 export default function Survey() {
-	const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const onSubmit = data => console.log(data);
+  const [rates, setRates] = useState([
+	  0,
+	  0,
+	  0,
+	  0
+  ]);
+
+	const brackets = {
+		"single": {
+			0: 0.1,
+			10726: 0.12,
+			41776: 0.22,
+			89076: 0.24,
+			170051: 0.32,
+			215951: 0.35,
+			539901: 0.37,
+		},
+		"married-joint": {
+			0: 0.1,
+			20551: 0.12,
+			83551: 0.22,
+			178151: 0.24,
+			340101: 0.32,
+			431901: 0.35,
+			647851: 0.37,
+		},
+		"married-separate": {
+			0: 0.1,
+			10276: 0.12,
+			41776: 0.22,
+			89076: 0.24,
+			170051: 0.32,
+			215951: 0.35,
+			323936: 0.37,
+		},
+		"head": {
+			0: 0.1,
+			14651: 0.12,
+			55901: 0.22,
+			89051: 0.24,
+			170051: 0.32,
+			215951: 0.35,
+			539901: 0.37,
+		}
+	}
+
+  useEffect(() => {
+		let income = watch("income");
+		const bounds = Object.keys(brackets.single);
+		let tax;
+	
+		for (let i = 1; i < bounds.length; i++){
+			if (bounds[i] > income){
+				tax += (income - bounds[i-1]) * (brackets["single"][bounds[i]])
+				break;
+			}
+			else {
+				tax += (bounds[i] - bounds[i-1]) * (brackets["single"][bounds[i]])
+			}
+		}
+		let ss = income * 0.062
+		let med = income * 0.0145;
+		let takehome = income - med - ss - tax;
+
+		setRates([takehome, tax, ss, med]);
+		
+	}, [watch("income")]);
 
 	const graphData = {
-		labels: ["Take Home Pay", "Federal Income Tax", "FICA (Social Security & Medicare)"],
+		labels: ["Take Home Pay", "Federal Income Tax", "Social Security", "Medicare"],
 		datasets: [
 			{
 				label: "Money ($)",
-				data: [watch("income") * 0.66, watch("income") * 0.33],
+				data: rates,
 				borderWidth: 1,
 				backgroundColor: [
 					"rgba(255, 99, 132, 0.2)",
