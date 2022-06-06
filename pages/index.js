@@ -1,17 +1,18 @@
 import styles from '../styles/Home.module.css'
-import { Heading, Button, Box, Tabs, TabList, Tab, Flex, VStack } from '@chakra-ui/react'
+import { Heading, Button, Box, Tabs, TabList, Tab, Flex, VStack, Text } from '@chakra-ui/react'
 import Link from 'next/link';
 import { useState } from 'react';
 
 export default function Home() {
   const tabs = {
-    "Progressive Tax": "progs",
-    "Inflation": "inf",
-    "Fiscal Policy": "",
-    "Regressive Tax": "",
-    "Proportional Tax": "",
-    "Social Welfare Policies": "",
-    "Poverty Line": ""
+    "Progressive Tax": "A tax in which the tax rate increases as the taxable amount increases. The US Income tax uses a progessive rate.",
+    "Inflation": "A general increase in prices and fall in the purchasing value of money.",
+    "Fiscal Policy": "Use of government spending and tax policies to influence economic condition.",
+    "Regressive Tax": "A tax in which the tax rate decreases as the taxable amount increases.",
+    "Proportional Tax": "A tax in which the tax rate stays constant as the taxable amount increases.",
+    "Social Welfare Policies": "Government's response to human needs such as food, housing, healthcare, employment, and other necessities.",
+    "Poverty Line": "The minimum level of income deemed adequate in a particular country.",
+    "Social Equality": "A state of affairs in which all individuals within a specific society have equal rights, liberties, and status."
   }
   const [selected, setSelected] = useState("Progressive Tax");
 
@@ -58,12 +59,8 @@ export default function Home() {
             ))}
           </VStack>
         </Box>
-        <Box
-          borderWidth="3px"
-          borderRadius="lg"
-        >
-          {tabs[selected]}
-        </Box>
+          
+        <Text ml = {10}>{tabs[selected]}</Text>
 
       </Flex>
     </Box>
